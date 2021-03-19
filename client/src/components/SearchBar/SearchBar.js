@@ -1,18 +1,20 @@
 import React from "react";
 
-import useStyles from './styles';
+import useStyles from './styles.js';
 
 
-const SearchBar = () => {
+const SearchBar = (props) => {
 
     const classes = useStyles();
 
+    const onChange = () => {
+
+    };
+
     return(
-        <div>
-        <form>
-            <input type="text" placeholder="Search movies" onChange={onChange} className={classes.mainContainer}/>
+        <form className={`${classes.root} ${classes.form}`}>
+            <input type="text" placeholder={props.placeholder} onChange={props.handleInputChange}/>
         </form>
-        </div>
     )
 };
 
