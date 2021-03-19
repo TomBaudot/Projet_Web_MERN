@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import movies from './images/movies.png';
 import Movies from './components/Movies/Movies.js';
 import Form from './components/Form/Form.js';
+import SearchBar from './components/SearchBar/SearchBar.js'
 import useStyles from './styles';
 import { getMovies } from "./actions/movies.js";
 
@@ -18,9 +19,10 @@ const App = () => {
     return (
         <Container maxWidth="lg">
             <AppBar className={classes.appBar} position="static" color="inherit">
-                <Typography className={classes.heading} variant="h2" align="center">Movies</Typography>
+                <Typography className={classes.heading} variant="h2" align="center">Movies 564654546</Typography>
                 <img className={classes.image} src={movies} alt="icon" height="60"/>
             </AppBar>
+            <SearchBar />
             <Grow in>
                 <Container>
                     <Grid container justify="space-between" alignItems="stretch" spacing={3}>
