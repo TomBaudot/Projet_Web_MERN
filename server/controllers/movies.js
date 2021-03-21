@@ -7,7 +7,6 @@ const router = express.Router();
 export const getMovies = async (req, res) =>{
     try {
         const movieMessages = await MovieMessage.find();
-
         res.status(200).json(movieMessages);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -18,7 +17,6 @@ export const createMovie = async (req, res) => {
     const param = req.body;
 
     const newMovie = new MovieMessage(param)
-
     try {
         await newMovie.save();
 
