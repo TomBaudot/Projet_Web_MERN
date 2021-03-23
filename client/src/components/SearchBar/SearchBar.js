@@ -7,12 +7,8 @@ const SearchBar = (props) => {
 
     const classes = useStyles();
 
-    const onChange = () => {
-
-    };
-
     return(
-        <form className={`${classes.root} ${classes.form}`}>
+        <form className={classes.searchbar} >
             <input type="text" placeholder={props.placeholder} onChange={props.handleInputChange}/>
         </form>
     )

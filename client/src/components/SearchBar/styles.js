@@ -1,14 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-    form: {
+    searchbar: {
+        margin: '30px 0',
+        borderRadius: 15,
         display: 'flex',
-        flexWrap: 'wrap',
+        flexDirection: 'row',
+        maxWidth: 1000,
         justifyContent: 'center',
-    },
-    root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-        },
+        alignItems: 'center',
     },
 }));
