@@ -31,7 +31,7 @@ const App = () => {
 
         let str_before = 'Search movie by ';
         if(e !== 'like' && e !== 'dislike') setSearchPlaceholder(str_before.concat(e));
-        else setSearchPlaceholder(str_before.concat(e).concat("(< x, > x or = x)"));
+        else setSearchPlaceholder(str_before.concat(e).concat("(you can use >, < and =)"));
     };
 
     return (
