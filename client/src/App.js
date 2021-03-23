@@ -14,7 +14,8 @@ const App = () => {
     const [currentId, setCurrentId] = useState(0);
     const [searchField, setSearchFiled] = useState('');
     const [selectedSearch, setSelectedSearch] = useState('title');
-    const [searchPlaceholder, setSearchPlaceholder] = useState('Search Movie by Title')
+    const [searchPlaceholder, setSearchPlaceholder] = useState('Search Movie by Title');
+    const [searchFieldValue,setSearchFieldValue] = useState('');
     const dispatch = useDispatch();
     const classes = useStyles();
 
@@ -30,8 +31,13 @@ const App = () => {
         setSelectedSearch(f);
 
         let str_before = 'Search movie by ';
-        if(e !== 'like' && e !== 'dislike') setSearchPlaceholder(str_before.concat(e));
-        else setSearchPlaceholder(str_before.concat(e).concat(" ( you can use >, < and = )"));
+        if(e !== 'like' && e !== 'dislike'){
+            setSearchPlaceholder(str_before.concat(e));
+        }
+        else{
+            setSearchPlaceholder(str_before.concat(e).concat(" ( you can use >, < and = )"));
+        }
+        setSearchFieldValue('');
     };
 
     return (
@@ -41,7 +47,7 @@ const App = () => {
                 <img className={classes.image} src={movies} alt="icon" height="60"/>
             </AppBar>
             <DropdownList data={['title', 'director', 'release date', 'description','genres','lead actors','like','dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
-            <SearchBar placeholder={searchPlaceholder} handleInputChange={(e) => setSearchFiled(e.target.value)}/>
+            <SearchBar placeholder={searchPlaceholder} handleInputChange={(e) => {setSearchFiled(e.target.value);setSearchFieldValue(e.target.value)}} fieldValue={searchFieldValue}/>
             <Grow in>
                 <Container>
                     <Grid container justify="space-between" alignItems="stretch" spacing={3}>
