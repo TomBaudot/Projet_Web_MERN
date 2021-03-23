@@ -31,7 +31,7 @@ const App = () => {
 
         let str_before = 'Search movie by ';
         if(e !== 'like' && e !== 'dislike') setSearchPlaceholder(str_before.concat(e));
-        else setSearchPlaceholder(str_before.concat(e).concat("(you can use >, < and =)"));
+        else setSearchPlaceholder(str_before.concat(e).concat(" ( you can use >, < and = )"));
     };
 
     return (
@@ -40,10 +40,8 @@ const App = () => {
                 <Typography className={classes.heading} variant="h2" align="center">Movies</Typography>
                 <img className={classes.image} src={movies} alt="icon" height="60"/>
             </AppBar>
-            <div>
-            <DropdownList data={['title', 'director', 'release date', 'description','genres','lead actors','like','dislike']} onSelect={dopDonwListFunc}/>
-            <SearchBar name="searchbar" placeholder={searchPlaceholder} handleInputChange={(e) => setSearchFiled(e.target.value)}/>
-            </div>
+            <DropdownList data={['title', 'director', 'release date', 'description','genres','lead actors','like','dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
+            <SearchBar placeholder={searchPlaceholder} handleInputChange={(e) => setSearchFiled(e.target.value)}/>
             <Grow in>
                 <Container>
                     <Grid container justify="space-between" alignItems="stretch" spacing={3}>
