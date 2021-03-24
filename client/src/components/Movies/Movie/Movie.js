@@ -56,8 +56,6 @@ const Movie = ({movie, setCurrentId}) => {
                     {(user?.result?._id === movie?.creator) && (
                     <Button size="small" color="primary" onClick={() => dispatch(deleteMovie(movie._id))}>
                         <DeleteIcon fontSize="small"/>
-
-                        <Typography>{movie?.creator}</Typography>
                         Delete
                     </Button>
                     )}
