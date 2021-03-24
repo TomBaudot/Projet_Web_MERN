@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import movieRoutes from './routes/movies.js';
+import userRoutes from './routes/users.js';
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
 
 app.use('/movies',movieRoutes);
+app.use('/user', userRoutes);
 
 const CONNECTION_URL = 'mongodb://127.0.0.1:27017/Projet_Web';
 const PORT = process.env.PORT|| 5000;

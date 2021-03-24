@@ -12,14 +12,14 @@ const Movies = ({setCurrentId}) => {
 
     return(
         !movies.length ? <CircularProgress/> :(
-            <grid className={classes.container} container alignItems="stretch" spacing={3}>
+            <Grid className={classes.container} container alignItems="stretch" spacing={3}>
                 {
                     movies.map((movie) =>(
                         <Grid key={movie._id} item xs={12} xm={6}>
                             <Movie movie={movie} setCurrentId={setCurrentId}/>
                         </Grid>
                     ))}
-            </grid>
+            </Grid>
         )
     )
 };

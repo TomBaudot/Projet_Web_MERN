@@ -10,15 +10,27 @@ const Form = ({currentId}) => {
     const [movieData, setmovieData] = useState({title:'',director:'',lead_actors:'',genres:'',release_date:'',description:'',selectedFile:''});
     const classes = useStyles();
     const dispatch = useDispatch();
+    const user = JSON.parse(localStorage.getItem('profile'))
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createMovie(movieData));
+        dispatch(createMovie({...movieData, name:user?.result?.name}));
     };
 
     const clear = () => {
         setmovieData({title:'',director:'',lead_actors:'',genres:'',release_date:'',description:'',selectedFile:''});
     };
+
+    if(!user?.result?.name) {
+        return (
+            <Paper className={classes.paper}>
+                <Typography variant="h6" align="center">
+                    Please sign in to add new movies and like or dislike movies.
+                </Typography>
+            </Paper>
+        )
+    }
+
 
     return(
         <Paper className={classes.paper}>

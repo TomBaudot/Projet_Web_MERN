@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import backmovie from '../../images/backmovie.png'
-import backshow from '../../images/backshow.png'
+
 
 
 
