@@ -12,18 +12,18 @@ import Navbar from "./components/Navbar/Navbar";
 const App = () => {
 
 
-const history = createBrowserHistory();
+    const history = createBrowserHistory();
 
-return (
+    return (
         <Router history={history}>
             <Container maxWidth="lg">
                 <Navbar />
                 <Route exact path="/" component={Index} />
                 <Route path="/auth" component={Auth} />
                 <Route path="/movies" component={IndexMovies} />
-                </Container>
+            </Container>
         </Router>
-    
+
     );
 }
 export default App;

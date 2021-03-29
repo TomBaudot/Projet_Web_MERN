@@ -35,10 +35,11 @@ const Movie = ({movie, setCurrentId}) => {
 
     return(
         <Card className={classes.card}>
-            <CardMedia className={classes.media} image={movie.selectedFile} title={movie.title}/>
+            <CardMedia className={classes.media} image={movie.selectedFile} title="test"/>
             <div className={classes.overlay}>
                 <Typography variant="h6">{movie.title}</Typography>
-                <Typography variant="body2">{movie.release_date}</Typography>
+                <Typography variant="body2">Released in : {movie.release_date}</Typography>
+                <Typography variant="body2">Directed by : {movie.director}</Typography>
             </div>
             <div className={classes.details}>
                 <Typography variant="body1" color="textSecondary">Staring : {movie.lead_actors.map((actor) =>`${actor} `)}</Typography>
