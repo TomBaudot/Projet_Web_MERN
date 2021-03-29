@@ -1,7 +1,9 @@
 import React from "react";
 import {Card, CardActions, CardContent, CardMedia, Button, Typography} from "@material-ui/core";
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
+import ThumbDownAltOutlined from '@material-ui/icons/ThumbDownAltOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {useDispatch} from "react-redux";
 
@@ -11,6 +13,25 @@ import {deleteMovie, likeMovie, dislikeMovie} from "../../../actions/movies";
 const Movie = ({movie, setCurrentId}) => {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const user = JSON.parse(localStorage.getItem('profile'));
+
+    const Likes = () => {
+            return movie.likes.find((like) => like === user?.result?._id)
+            ? (
+                <><ThumbUpAltIcon fontSize="small" />&nbsp; { `Like ${movie.likes.length }`}</>
+            ) : (   
+                <><ThumbUpAltOutlined fontSize="small" />&nbsp; { `Like ${movie.likes.length }`}</>
+            );
+    };
+
+    const Dislikes = () => {
+        return movie.dislikes.find((dislike) => dislike === user?.result?._id)
+        ? (
+            <><ThumbDownAltIcon fontSize="small" />&nbsp; { `Dislike ${movie.dislikes.length }`}</>
+        ) : (   
+            <><ThumbDownAltOutlined fontSize="small" />&nbsp; { `Dislike ${movie.dislikes.length }`}</>
+        ); 
+}
 
     return(
         <Card className={classes.card}>
@@ -26,20 +47,18 @@ const Movie = ({movie, setCurrentId}) => {
                     <Typography className={classes.title} variant="h5" gutterBottom>{movie.description}</Typography>
                 </CardContent>
                 <CardActions className={classes.cardActions}>
-                    <Button size="small" color="primary" onClick={() =>dispatch(likeMovie(movie._id))}>
-                        <ThumbUpAltIcon fontSize="small"/>
-                        Like
-                        {movie.likeCount}
+                    <Button size="small" color="primary" disabled={!user?.result} onClick={() =>dispatch(likeMovie(movie._id))}>
+                        <Likes />
                     </Button>
-                    <Button size="small" color="primary" onClick={() =>dispatch(dislikeMovie(movie._id))}>
-                        <ThumbDownAltIcon fontSize="small"/>
-                        Dislike
-                        {movie.dislikeCount}
+                    <Button size="small" color="primary" disabled={!user?.result} onClick={() =>dispatch(dislikeMovie(movie._id))}>
+                        <Dislikes />
                     </Button>
+                    {(user?.result?._id === movie?.creator) && (
                     <Button size="small" color="primary" onClick={() => dispatch(deleteMovie(movie._id))}>
                         <DeleteIcon fontSize="small"/>
                         Delete
                     </Button>
+                    )}
                 </CardActions>
             </div>
         </Card>

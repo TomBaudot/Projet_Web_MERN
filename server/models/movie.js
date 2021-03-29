@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
 const movieSchema = mongoose.Schema({
+    creator:String,
+    name:String,
     title: String,
     director: String,
     lead_actors: [String],
@@ -8,13 +10,13 @@ const movieSchema = mongoose.Schema({
     release_date: String,
     description:String,
     selectedFile: String,
-    likeCount: {
-        type: Number,
-        default: 0,
+    likes: {
+        type: [String],
+        default: [],
     },
-    dislikeCount: {
-        type: Number,
-        default: 0,
+    dislikes: {
+        type: [String],
+        default: [],
     },
 });
 

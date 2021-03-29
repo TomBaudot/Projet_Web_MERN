@@ -1,9 +1,22 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/movies';
+const API = axios.create({baseURL: 'http://localhost:5000'});
 
-export const fetchMovies = () => axios.get(url);
-export const createMovie = (newMovie) => axios.post(url, newMovie);
-export const deleteMovie = (id) => axios.delete(`${url}/${id}`);
-export const likeMovie = (id) => axios.patch(`${url}/${id}/likeMovie`);
-export const dislikeMovie = (id) => axios.patch(`${url}/${id}/dislikeMovie`);
+API.interceptors.request.use((req) => {
+    if(localStorage.getItem('profile')) {
+        req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`
+    }
+
+    return req;
+});
+
+
+export const fetchMovies = () => API.get('/movies');
+export const createMovie = (newMovie) => API.post('/movies', newMovie);
+export const deleteMovie = (id) => API.delete(`/movies/${id}`);
+export const likeMovie = (id) => API.patch(`/movies/${id}/likeMovie`);
+export const dislikeMovie = (id) => API.patch(`/movies/${id}/dislikeMovie`);
+
+export const signIn = (formData) => API.post('/user/signin', formData);
+export const signUp = (formData) => API.post('/user/signup', formData);
+

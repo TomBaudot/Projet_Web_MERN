@@ -7,7 +7,6 @@ const router = express.Router();
 export const getMovies = async (req, res) =>{
     try {
         const movieMessages = await MovieMessage.find();
-
         res.status(200).json(movieMessages);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -17,8 +16,7 @@ export const getMovies = async (req, res) =>{
 export const createMovie = async (req, res) => {
     const param = req.body;
 
-    const newMovie = new MovieMessage(param)
-
+    const newMovie = new MovieMessage({...param, creator:req.userId, createdAt:new Date().toISOString()})
     try {
         await newMovie.save();
 
@@ -39,12 +37,24 @@ export const deleteMovie = async (req,res) => {
 
 export const likeMovie = async (req, res) => {
     const { id: _id } = req.params;
+    
+    if(!req.userId) return res.json({message: "Unauthenticated"})
 
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No post with id: ${_id}`);
 
     const movie = await MovieMessage.findById(_id);
 
-    const updatedMovie = await MovieMessage.findByIdAndUpdate(_id, { likeCount: movie.likeCount + 1 }, { new: true });
+    const index = movie.likes.findIndex((_id) => _id === String(req.userId));
+
+    if(index === -1) {
+        movie.likes.push(req.userId)
+    }
+
+    else {
+        movie.likes = movie.likes.filter((_id) => !(_id === String(req.userId)) );
+    }
+
+    const updatedMovie = await MovieMessage.findByIdAndUpdate(_id, movie, { new: true });
 
     res.json(updatedMovie);
 };
@@ -52,11 +62,23 @@ export const likeMovie = async (req, res) => {
 export const dislikeMovie = async (req, res) => {
     const { id: _id } = req.params;
 
+    if(!req.userId) return res.json({message: "Unauthenticated"})
+
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No post with id: ${_id}`);
 
     const movie = await MovieMessage.findById(_id);
 
-    const updatedMovie = await MovieMessage.findByIdAndUpdate(_id, { dislikeCount: movie.dislikeCount + 1 }, { new: true });
+    const index = movie.dislikes.findIndex((_id) => _id === String(req.userId));
+
+    if(index === -1) {
+        movie.dislikes.push(req.userId)
+    }
+
+    else {
+        movie.dislikes = movie.dislikes.filter((_id) => !(_id === String(req.userId)) );
+    }
+
+    const updatedMovie = await MovieMessage.findByIdAndUpdate(_id, movie, { new: true });
 
     res.json(updatedMovie);
 };
