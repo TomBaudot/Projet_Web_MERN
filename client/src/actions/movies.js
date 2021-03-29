@@ -50,3 +50,13 @@ export const dislikeMovie = (id) => async (dispatch) => {
         console.log(err);
     }
 };
+
+export const updateMovie = (id, post) => async (dispatch) => {
+    try {
+        const {data } = await api.updateMovie(id, post);
+
+        dispatch({type: 'UPDATE', payload:data});
+    } catch (error) {
+        console.log(error);
+    }
+}

@@ -3,6 +3,7 @@ import {Card, CardActions, CardContent, CardMedia, Button, Typography} from "@ma
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import ThumbDownAltOutlined from '@material-ui/icons/ThumbDownAltOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {useDispatch} from "react-redux";
@@ -41,6 +42,13 @@ const Movie = ({movie, setCurrentId}) => {
                 <Typography variant="body2">Released in : {movie.release_date}</Typography>
                 <Typography variant="body2">Directed by : {movie.director}</Typography>
             </div>
+            {user?.result?.admin && (
+            <div className={classes.overlay2}>
+                <Button style={{color:'white'}} size="small" onClick={() => setCurrentId(movie._id)}>
+                    <MoreHorizIcon fontSize="default" />
+                </Button>
+            </div>
+            )}
             <div className={classes.details}>
                 <Typography variant="body1" color="textSecondary">Staring : {movie.lead_actors.map((actor) =>`${actor} `)}</Typography>
                 <Typography variant="body2" color="textSecondary">Genres : {movie.genres.map((genre) =>`${genre} `)}</Typography>
@@ -54,7 +62,7 @@ const Movie = ({movie, setCurrentId}) => {
                     <Button size="small" color="primary" disabled={!user?.result} onClick={() =>dispatch(dislikeMovie(movie._id))}>
                         <Dislikes />
                     </Button>
-                    {(user?.result?._id === movie?.creator) && (
+                    {user?.result?.admin && (
                     <Button size="small" color="primary" onClick={() => dispatch(deleteMovie(movie._id))}>
                         <DeleteIcon fontSize="small"/>
                         Delete

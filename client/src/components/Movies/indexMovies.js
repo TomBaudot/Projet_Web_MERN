@@ -18,6 +18,7 @@ const IndexMovies = () => {
     const [searchFieldValue,setSearchFieldValue] = useState('');
     const dispatch = useDispatch();
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem('profile'))
 
     useEffect( () => {dispatch(getMovies());}, [currentId, dispatch]);
 
@@ -54,9 +55,11 @@ const IndexMovies = () => {
                         <Grid item xs={12} sm={7}>
                             <Movies setCurrentId={setCurrentId} filter={searchField} selectedSearch={selectedSearch}/>
                         </Grid>
+                        { user?.result?.admin && ( 
                         <Grid item xs={12} sm={4}>
-                            <Form currentId={currentId} />
+                            <Form currentId={currentId} setCurrentId={setCurrentId} />
                         </Grid>
+                        )}
                     </Grid>
                 </Container>
             </Grow>
