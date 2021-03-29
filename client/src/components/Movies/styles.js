@@ -11,4 +11,10 @@ export default makeStyles((theme) => ({
     actionDiv: {
         textAlign: 'center',
     },
+    image: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        height: '20%',
+        width: '20%',
+    },
 }));

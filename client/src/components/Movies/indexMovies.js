@@ -44,7 +44,7 @@ const IndexMovies = () => {
         <Container maxWidth="lg">
             <AppBar className={classes.appBar} position="static" color="inherit">
                 <Typography className={classes.heading} variant="h2" align="center">Movies</Typography>
-                <img className={classes.image} src={movies} alt="icon" height="60"/>
+                <img className={classes.image} src={movies} alt="icon"/>
             </AppBar>
             <DropdownList data={['title', 'director', 'release date', 'description','genres','lead actors','like','dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
             <SearchBar placeholder={searchPlaceholder} handleInputChange={(e) => {setSearchFiled(e.target.value);setSearchFieldValue(e.target.value)}} fieldValue={searchFieldValue}/>

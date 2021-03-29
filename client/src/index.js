@@ -9,7 +9,6 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import 'react-widgets/dist/css/react-widgets.css';
 
-import { reducers } from './reducers';
 import App from './App';
 import './index.css';
 
