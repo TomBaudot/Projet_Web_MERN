@@ -3,6 +3,7 @@ import { Container } from '@material-ui/core';
 
 import Index from './components/Index/index.js'
 import IndexMovies from './components/Movies/indexMovies.js'
+import IndexShows from './components/Shows/indexShows.js'
 import { Router, Route } from "react-router";
 import { createBrowserHistory } from 'history'
 import Auth from "./components/Auth/Auth";
@@ -21,6 +22,7 @@ const App = () => {
                 <Route exact path="/" component={Index} />
                 <Route path="/auth" component={Auth} />
                 <Route path="/movies" component={IndexMovies} />
+                <Route path="/shows" component={IndexShows} />
             </Container>
         </Router>
 
