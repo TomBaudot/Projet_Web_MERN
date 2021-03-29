@@ -24,14 +24,20 @@ const IndexShows = () => {
     const dopDonwListFunc = (e) => {
         // reformating from the dropdownlist
         let f = e;
-        if(e === 'nb seasons') f = 'nb_seasons';
-        if(e === 'lead actors') f = 'lead_actors';
-        if(e === 'like') f = 'likeCount';
-        if(e === 'dislike') f = 'dislikeCount';
+        if(e === 'Title') f = 'title';
+        if(e === 'Number of seasons') f = 'nb_seasons';
+        if(e === 'Runtime') f = 'runtime';
+        if(e === 'Network') f = 'network';
+        if(e === 'Showrunner') f = 'showrunner';
+        if(e === 'Lead actors') f = 'lead_actors';
+        if(e === 'Like') f = 'likeCount';
+        if(e === 'Dislike') f = 'dislikeCount';
+        if(e === 'Description') f = 'description';
+        if(e === 'Genres') f = 'genres';
         setSelectedSearch(f);
 
         let str_before = 'Search show by ';
-        if(e !== 'like' && e !== 'dislike'){
+        if(e !== 'Like' && e !== 'Dislike'){
             setSearchPlaceholder(str_before.concat(e));
         }
         else{
@@ -46,7 +52,7 @@ const IndexShows = () => {
                 <Typography className={classes.heading} variant="h2" align="center">Shows</Typography>
                 <img className={classes.image} src={movies} alt="icon"/>
             </AppBar>
-            <DropdownList data={['title', 'nb seasons', 'description','genres','lead actors','like','dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
+            <DropdownList data={['Title', 'Number of seasons', 'Runtime,', 'Network', 'Showrunner', 'Description','Genres','Lead actors','Like','Dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
             <SearchBar placeholder={searchPlaceholder} handleInputChange={(e) => {setSearchFiled(e.target.value);setSearchFieldValue(e.target.value)}} fieldValue={searchFieldValue}/>
             <Grow in>
                 <Container>

@@ -7,6 +7,9 @@ const showSchema = mongoose.Schema({
     lead_actors: [String],
     genres: [String],
     nb_seasons: String,
+    runtime: String,
+    network: String,
+    showrunner: String,
     description:String,
     selectedFile: String,
     likes: {

@@ -7,7 +7,7 @@ import useStyles from './styles';
 import {createShow} from "../../actions/shows.js";
 
 const Form = ({currentId}) => {
-    const [showData, setshowData] = useState({title:'',lead_actors:'',genres:'',nb_seasons:'',description:'',selectedFile:''});
+    const [showData, setshowData] = useState({title:'',lead_actors:'',genres:'',nb_seasons:'',runtime:'',network:'',showrunner:'',description:'',selectedFile:''});
     const classes = useStyles();
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'))
@@ -18,7 +18,7 @@ const Form = ({currentId}) => {
     };
 
     const clear = () => {
-        setshowData({title:'',lead_actors:'',genres:'',nb_seasons:'',description:'',selectedFile:''});
+        setshowData({title:'',lead_actors:'',genres:'',nb_seasons:'',runtime:'',network:'',showrunner:'',description:'',selectedFile:''});
     };
 
     if(!user?.result?.name) {
@@ -39,7 +39,10 @@ const Form = ({currentId}) => {
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={showData.title} onChange={(e) => setshowData({ ...showData, title:e.target.value })}/>
                 <TextField name="lead_actors" variant="outlined" label="Lead actors" fullWidth value={showData.lead_actors} onChange={(e) => setshowData({ ...showData, lead_actors:e.target.value })}/>
                 <TextField name="genres" variant="outlined" label="Genres" fullWidth value={showData.genres} onChange={(e) => setshowData({ ...showData, genres:e.target.value })}/>
-                <TextField name="nb_seasons" variant="outlined" label="Number of seasons" fullWidth value={showData.release_date} onChange={(e) => setshowData({ ...showData, nb_seasons:e.target.value })}/>
+                <TextField name="nb_seasons" variant="outlined" label="Number of seasons" fullWidth value={showData.nb_seasons} onChange={(e) => setshowData({ ...showData, nb_seasons:e.target.value })}/>
+                <TextField name="runtime" variant="outlined" label="Runtime" fullWidth value={showData.runtime} onChange={(e) => setshowData({ ...showData, runtime:e.target.value })}/>
+                <TextField name="network" variant="outlined" label="Network" fullWidth value={showData.network} onChange={(e) => setshowData({ ...showData, network:e.target.value })}/>
+                <TextField name="showrunner" variant="outlined" label="Showrunner" fullWidth value={showData.showrunner} onChange={(e) => setshowData({ ...showData, showrunner:e.target.value })}/>
                 <TextField name="description" variant="outlined" label="Description" fullWidth value={showData.description} onChange={(e) => setshowData({ ...showData, description:e.target.value })}/>
                 <div className={classes.fileInput}>
                     <FileBase type="file" multiple={false} onDone={({base64}) => setshowData({...showData,selectedFile: base64})}/>

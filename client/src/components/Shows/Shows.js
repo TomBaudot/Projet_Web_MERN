@@ -13,7 +13,7 @@ const Shows = ({setCurrentId,filter,selectedSearch}) => {
     //need to be made more beautifull, don't know how yet
 
     // Simple string
-    if( ['title', 'nb_seasons', 'description'].includes(selectedSearch)){
+    if( ['title', 'nb_seasons', 'runtime', 'network', 'showrunner', 'description'].includes(selectedSearch)){
         return (
             !shows.length ? <CircularProgress/> : (
                 <Grid className={classes.container} container alignItems="stretch" spacing={3}>
