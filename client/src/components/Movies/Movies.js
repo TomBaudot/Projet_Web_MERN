@@ -6,7 +6,7 @@ import Movie from './Movie/Movie.js';
 import useStyles from './styles';
 
 
-const Movies = ({setCurrentId,filter,selectedSearch}) => {
+const Movies = ({setCurrentId,filter,selectedSearch,currentId}) => {
     const movies = useSelector((state) => state.movies);
     const classes = useStyles();
 
@@ -20,7 +20,7 @@ const Movies = ({setCurrentId,filter,selectedSearch}) => {
                     {
                         movies.filter(movie => movie[selectedSearch].includes(filter)).map((movie) => (
                             <Grid key={movie._id} item xs={12} xm={6}>
-                                <Movie movie={movie} setCurrentId={setCurrentId}/>
+                                <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                             </Grid>
                         ))}
                 </Grid>
@@ -35,7 +35,7 @@ const Movies = ({setCurrentId,filter,selectedSearch}) => {
                     {
                         movies.filter(movie => movie[selectedSearch].join('').includes(filter)).map((movie) => (
                             <Grid key={movie._id} item xs={12} xm={6}>
-                                <Movie movie={movie} setCurrentId={setCurrentId}/>
+                                <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                             </Grid>
                         ))}
                 </Grid>
@@ -52,7 +52,7 @@ const Movies = ({setCurrentId,filter,selectedSearch}) => {
                         {
                             movies.map((movie) => (
                                 <Grid key={movie._id} item xs={12} xm={6}>
-                                    <Movie movie={movie} setCurrentId={setCurrentId}/>
+                                    <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                                 </Grid>
                             ))}
                     </Grid>
@@ -68,7 +68,7 @@ const Movies = ({setCurrentId,filter,selectedSearch}) => {
                             {
                                 movies.filter(movie => movie[selectedSearch] >= filter).map((movie) => (
                                     <Grid key={movie._id} item xs={12} xm={6}>
-                                        <Movie movie={movie} setCurrentId={setCurrentId}/>
+                                        <Movie movie={movie} setCurrentId={setCurrentId} />
                                     </Grid>
                                 ))}
                         </Grid>
@@ -83,7 +83,7 @@ const Movies = ({setCurrentId,filter,selectedSearch}) => {
                             {
                                 movies.filter(movie => movie[selectedSearch] > filter).map((movie) => (
                                     <Grid key={movie._id} item xs={12} xm={6}>
-                                        <Movie movie={movie} setCurrentId={setCurrentId}/>
+                                        <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                                     </Grid>
                                 ))}
                         </Grid>
@@ -100,7 +100,7 @@ const Movies = ({setCurrentId,filter,selectedSearch}) => {
                             {
                                 movies.filter(movie => movie[selectedSearch] <= filter).map((movie) => (
                                     <Grid key={movie._id} item xs={12} xm={6}>
-                                        <Movie movie={movie} setCurrentId={setCurrentId}/>
+                                        <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                                     </Grid>
                                 ))}
                         </Grid>
@@ -115,7 +115,7 @@ const Movies = ({setCurrentId,filter,selectedSearch}) => {
                             {
                                 movies.filter(movie => movie[selectedSearch] < filter).map((movie) => (
                                     <Grid key={movie._id} item xs={12} xm={6}>
-                                        <Movie movie={movie} setCurrentId={setCurrentId}/>
+                                        <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                                     </Grid>
                                 ))}
                         </Grid>
@@ -131,7 +131,7 @@ const Movies = ({setCurrentId,filter,selectedSearch}) => {
                         {
                             movies.filter(movie => movie[selectedSearch] === filter).map((movie) => (
                                 <Grid key={movie._id} item xs={12} xm={6}>
-                                    <Movie movie={movie} setCurrentId={setCurrentId}/>
+                                    <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                                 </Grid>
                             ))}
                     </Grid>

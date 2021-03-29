@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import transitions from "@material-ui/core/styles/transitions";
 
 export default makeStyles({
     media: {
@@ -48,5 +49,15 @@ export default makeStyles({
         padding: '0 16px 8px 16px',
         display: 'flex',
         justifyContent: 'space-between',
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: transitions.create('transform', {
+            duration: transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
     },
 });
