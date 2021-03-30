@@ -54,18 +54,7 @@ const IndexShows = () => {
             </AppBar>
             <DropdownList data={['Title', 'Number of seasons', 'Runtime,', 'Network', 'Showrunner', 'Description','Genres','Lead actors','Like','Dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
             <SearchBar placeholder={searchPlaceholder} handleInputChange={(e) => {setSearchFiled(e.target.value);setSearchFieldValue(e.target.value)}} fieldValue={searchFieldValue}/>
-            <Grow in>
-                <Container>
-                    <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-                        <Grid item xs={12} sm={7}>
-                            <Shows setCurrentId={setCurrentId} filter={searchField} selectedSearch={selectedSearch}/>
-                        </Grid>
-                        <Grid item xs={12} sm={4}>
-                            <Form currentId={currentId} />
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Grow>
+            <Shows setCurrentId={setCurrentId} filter={searchField} selectedSearch={selectedSearch}/>
         </Container>
     );
 }

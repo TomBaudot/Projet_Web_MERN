@@ -17,4 +17,16 @@ export default makeStyles((theme) => ({
         height: '20%',
         width: '20%',
     },
+    container: {
+        // flex: 1,
+        flexDirection: 'row',
+        // flexWrap: 'wrap',
+        // alignItems: 'flex-start',
+        item: true,
+        xs: '12px',
+        sm: '7px',
+        width: '50%',
+        container: true,
+        padding: theme.spacing(3),
+    },
 }));

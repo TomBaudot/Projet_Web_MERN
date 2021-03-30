@@ -16,10 +16,10 @@ const Shows = ({setCurrentId,filter,selectedSearch}) => {
     if( ['title', 'nb_seasons', 'runtime', 'network', 'showrunner', 'description'].includes(selectedSearch)){
         return (
             !shows.length ? <CircularProgress/> : (
-                <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                <Grid container alignItems="stretch" spacing={3}>
                     {
                         shows.filter(show => show[selectedSearch].includes(filter)).map((show) => (
-                            <Grid key={show._id} item xs={12} xm={6}>
+                            <Grid key={show._id} item xs={6} xm={12}>
                                 <Show show={show} setCurrentId={setCurrentId}/>
                             </Grid>
                         ))}
@@ -31,10 +31,10 @@ const Shows = ({setCurrentId,filter,selectedSearch}) => {
     if( ['genres','lead_actors'].includes(selectedSearch)){
         return (
             !shows.length ? <CircularProgress/> : (
-                <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                <Grid container alignItems="stretch" spacing={3}>
                     {
                         shows.filter(show => show[selectedSearch].join('').includes(filter)).map((show) => (
-                            <Grid key={show._id} item xs={12} xm={6}>
+                            <Grid key={show._id} item xs={6} xm={12}>
                                 <Show show={show} setCurrentId={setCurrentId}/>
                             </Grid>
                         ))}
@@ -48,10 +48,10 @@ const Shows = ({setCurrentId,filter,selectedSearch}) => {
         if(filter === ""){
             return (
                 !shows.length ? <CircularProgress/> : (
-                    <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                    <Grid container alignItems="stretch" spacing={3}>
                         {
                             shows.map((show) => (
-                                <Grid key={show._id} item xs={12} xm={6}>
+                                <Grid key={show._id} item xs={6} xm={12}>
                                     <Show show={show} setCurrentId={setCurrentId}/>
                                 </Grid>
                             ))}
@@ -64,10 +64,10 @@ const Shows = ({setCurrentId,filter,selectedSearch}) => {
                 filter = parseInt(filter.replace('>','').replace('=','').replace(/\s/g, ''));
                 return (
                     !shows.length ? <CircularProgress/> : (
-                        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                        <Grid container alignItems="stretch" spacing={3}>
                             {
                                 shows.filter(show => show[selectedSearch] >= filter).map((show) => (
-                                    <Grid key={show._id} item xs={12} xm={6}>
+                                    <Grid key={show._id} item xs={6} xm={12}>
                                         <Show show={show} setCurrentId={setCurrentId}/>
                                     </Grid>
                                 ))}
@@ -79,10 +79,10 @@ const Shows = ({setCurrentId,filter,selectedSearch}) => {
                 filter = parseInt(filter.replace('>','').replace(/\s/g, ''));
                 return (
                     !shows.length ? <CircularProgress/> : (
-                        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                        <Grid container alignItems="stretch" spacing={3}>
                             {
                                 shows.filter(show => show[selectedSearch] > filter).map((show) => (
-                                    <Grid key={show._id} item xs={12} xm={6}>
+                                    <Grid key={show._id} item xs={6} xm={12}>
                                         <Show show={show} setCurrentId={setCurrentId}/>
                                     </Grid>
                                 ))}
@@ -96,10 +96,10 @@ const Shows = ({setCurrentId,filter,selectedSearch}) => {
                 filter = parseInt(filter.replace('<','').replace('=','').replace(/\s/g, ''));
                 return (
                     !shows.length ? <CircularProgress/> : (
-                        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                        <Grid container alignItems="stretch" spacing={3}>
                             {
                                 shows.filter(show => show[selectedSearch] <= filter).map((show) => (
-                                    <Grid key={show._id} item xs={12} xm={6}>
+                                    <Grid key={show._id} item xs={6} xm={12}>
                                         <Show show={show} setCurrentId={setCurrentId}/>
                                     </Grid>
                                 ))}
@@ -111,10 +111,10 @@ const Shows = ({setCurrentId,filter,selectedSearch}) => {
                 filter = parseInt(filter.replace('<','').replace(/\s/g, ''));
                 return (
                     !shows.length ? <CircularProgress/> : (
-                        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                        <Grid container alignItems="stretch" spacing={3}>
                             {
                                 shows.filter(show => show[selectedSearch] < filter).map((show) => (
-                                    <Grid key={show._id} item xs={12} xm={6}>
+                                    <Grid key={show._id} item xs={6} xm={12}>
                                         <Show show={show} setCurrentId={setCurrentId}/>
                                     </Grid>
                                 ))}
@@ -127,10 +127,10 @@ const Shows = ({setCurrentId,filter,selectedSearch}) => {
             if(filter.includes('=')) filter = parseInt(filter.replace('=','').replace(/\s/g, ''));
             return (
                 !shows.length ? <CircularProgress/> : (
-                    <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                    <Grid container alignItems="stretch" spacing={3}>
                         {
                             shows.filter(show => show[selectedSearch] === filter).map((show) => (
-                                <Grid key={show._id} item xs={12} xm={6}>
+                                <Grid key={show._id} item xs={6} xm={12}>
                                     <Show show={show} setCurrentId={setCurrentId}/>
                                 </Grid>
                             ))}

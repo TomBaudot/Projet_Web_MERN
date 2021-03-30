@@ -16,10 +16,10 @@ const Movies = ({setCurrentId,filter,selectedSearch,currentId}) => {
     if( ['title', 'director', 'release_date', 'description'].includes(selectedSearch)){
         return (
             !movies.length ? <CircularProgress/> : (
-                <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                <Grid container spacing={3}>
                     {
                         movies.filter(movie => movie[selectedSearch].includes(filter)).map((movie) => (
-                            <Grid key={movie._id} item xs={12} xm={6}>
+                            <Grid key={movie._id} item xs={6} xm={12}>
                                 <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                             </Grid>
                         ))}
@@ -31,10 +31,10 @@ const Movies = ({setCurrentId,filter,selectedSearch,currentId}) => {
     if( ['genres','lead_actors'].includes(selectedSearch)){
         return (
             !movies.length ? <CircularProgress/> : (
-                <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                <Grid container alignItems="stretch" spacing={3} >
                     {
                         movies.filter(movie => movie[selectedSearch].join('').includes(filter)).map((movie) => (
-                            <Grid key={movie._id} item xs={12} xm={6}>
+                            <Grid key={movie._id} item xs={6} xm={12}>
                                 <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                             </Grid>
                         ))}
@@ -48,10 +48,10 @@ const Movies = ({setCurrentId,filter,selectedSearch,currentId}) => {
         if(filter === ""){
             return (
                 !movies.length ? <CircularProgress/> : (
-                    <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                    <Grid container alignItems="stretch" spacing={3} >
                         {
                             movies.map((movie) => (
-                                <Grid key={movie._id} item xs={12} xm={6}>
+                                <Grid key={movie._id} item xs={6} xm={12}>
                                     <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                                 </Grid>
                             ))}
@@ -64,10 +64,10 @@ const Movies = ({setCurrentId,filter,selectedSearch,currentId}) => {
                 filter = parseInt(filter.replace('>','').replace('=','').replace(/\s/g, ''));
                 return (
                     !movies.length ? <CircularProgress/> : (
-                        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                        <Grid container alignItems="stretch" spacing={3} >
                             {
                                 movies.filter(movie => movie[selectedSearch] >= filter).map((movie) => (
-                                    <Grid key={movie._id} item xs={12} xm={6}>
+                                    <Grid key={movie._id} item xs={6} xm={12}>
                                         <Movie movie={movie} setCurrentId={setCurrentId} />
                                     </Grid>
                                 ))}
@@ -79,10 +79,10 @@ const Movies = ({setCurrentId,filter,selectedSearch,currentId}) => {
                 filter = parseInt(filter.replace('>','').replace(/\s/g, ''));
                 return (
                     !movies.length ? <CircularProgress/> : (
-                        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                        <Grid container alignItems="stretch" spacing={3} >
                             {
                                 movies.filter(movie => movie[selectedSearch] > filter).map((movie) => (
-                                    <Grid key={movie._id} item xs={12} xm={6}>
+                                    <Grid key={movie._id} item xs={6} xm={12}>
                                         <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                                     </Grid>
                                 ))}
@@ -96,10 +96,10 @@ const Movies = ({setCurrentId,filter,selectedSearch,currentId}) => {
                 filter = parseInt(filter.replace('<','').replace('=','').replace(/\s/g, ''));
                 return (
                     !movies.length ? <CircularProgress/> : (
-                        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                        <Grid container alignItems="stretch" spacing={3} >
                             {
                                 movies.filter(movie => movie[selectedSearch] <= filter).map((movie) => (
-                                    <Grid key={movie._id} item xs={12} xm={6}>
+                                    <Grid key={movie._id} item xs={6} xm={12}>
                                         <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                                     </Grid>
                                 ))}
@@ -111,10 +111,10 @@ const Movies = ({setCurrentId,filter,selectedSearch,currentId}) => {
                 filter = parseInt(filter.replace('<','').replace(/\s/g, ''));
                 return (
                     !movies.length ? <CircularProgress/> : (
-                        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                        <Grid container alignItems="stretch" spacing={3} >
                             {
                                 movies.filter(movie => movie[selectedSearch] < filter).map((movie) => (
-                                    <Grid key={movie._id} item xs={12} xm={6}>
+                                    <Grid key={movie._id} item xs={6} xm={12}>
                                         <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                                     </Grid>
                                 ))}
@@ -127,10 +127,10 @@ const Movies = ({setCurrentId,filter,selectedSearch,currentId}) => {
             if(filter.includes('=')) filter = parseInt(filter.replace('=','').replace(/\s/g, ''));
             return (
                 !movies.length ? <CircularProgress/> : (
-                    <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                    <Grid container alignItems="stretch" spacing={3} >
                         {
                             movies.filter(movie => movie[selectedSearch] === filter).map((movie) => (
-                                <Grid key={movie._id} item xs={12} xm={6}>
+                                <Grid key={movie._id} item xs={6} xm={12}>
                                     <Movie movie={movie} setCurrentId={setCurrentId} currentId={currentId}/>
                                 </Grid>
                             ))}
