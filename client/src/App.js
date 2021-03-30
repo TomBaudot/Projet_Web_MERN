@@ -23,7 +23,7 @@ const App = () => {
                 <Navbar />
                 <Route exact path="/" component={Index} />
                 <Route path="/auth" component={Auth} />
-                <Route path="/shows" component={IndexShows} />
+                <Route exact path="/shows" component={IndexShows} />
                 <Route exact path="/movies" component={IndexMovies} />
                 <Route path="/movies/add" component={Add} />
                 <Route path="/shows/add" component={AddShow} />
