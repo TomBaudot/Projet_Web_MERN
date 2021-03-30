@@ -64,7 +64,7 @@ const Show = ({show, setCurrentId}) => {
                     <Dislikes />
                 </Button>
                 {user?.result?.admin && (
-                    <Button size="small" color="primary" onClick={() => dispatch(deleteMovie(show._id))}>
+                    <Button size="small" color="primary" onClick={() => dispatch(deleteShow(show._id))}>
                         <DeleteIcon fontSize="small"/>
                         Delete
                     </Button>
