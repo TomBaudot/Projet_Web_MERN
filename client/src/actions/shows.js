@@ -50,3 +50,13 @@ export const dislikeShow = (id) => async (dispatch) => {
         console.log(err);
     }
 };
+
+export const updateShow = (id, post) => async (dispatch) => {
+    try {
+        const {data } = await api.updateShow(id, post);
+
+        dispatch({type: 'UPDATE', payload:data});
+    } catch (error) {
+        console.log(error);
+    }
+};

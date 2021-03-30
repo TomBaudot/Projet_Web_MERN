@@ -9,6 +9,7 @@ import { createBrowserHistory } from 'history'
 import Auth from "./components/Auth/Auth";
 import Navbar from "./components/Navbar/Navbar";
 import Add from './components/Add/Add';
+import AddShow from './components/Add/addShow'
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
                 <Route path="/shows" component={IndexShows} />
                 <Route exact path="/movies" component={IndexMovies} />
                 <Route path="/movies/add" component={Add} />
+                <Route path="/shows/add" component={AddShow} />
             </Container>
         </Router>
 

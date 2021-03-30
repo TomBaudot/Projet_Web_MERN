@@ -60,4 +60,4 @@ export const updateMovie = (id, post) => async (dispatch) => {
     } catch (error) {
         console.log(error);
     }
-}
+};

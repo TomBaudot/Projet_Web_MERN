@@ -17,7 +17,7 @@ const Form = ({currentId, setCurrentId}) => {
 
     useEffect(() => {
         if(movie) setmovieData(movie);
-    }, [movie])
+    }, [movie]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,7 +36,7 @@ const Form = ({currentId, setCurrentId}) => {
     };
 
     const clear = () => {
-        setCurrentId(null)
+        setCurrentId(null);
         setmovieData({title:'',director:'',lead_actors:'',genres:'',release_date:'',description:'',selectedFile:''});
     };
 

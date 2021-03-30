@@ -92,7 +92,7 @@ export const updateMovie = async (req, res) => {
 
     const updatedMovie = await MovieMessage.findByIdAndUpdate(_id, {...movie, _id}, {new:true});
 
-    res.json(updatedMovie)
+    res.json(updatedMovie);
 
-}
+};
 export default router;

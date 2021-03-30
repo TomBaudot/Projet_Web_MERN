@@ -11,7 +11,7 @@ const Add = () => {
     const dispatch = useDispatch();
     const [currentId, setCurrentId] = useState(0);
     const classes = useStyles();
-    const user = JSON.parse(localStorage.getItem('profile'))
+    const user = JSON.parse(localStorage.getItem('profile'));
 
 
     useEffect( () => {dispatch(getMovies());}, [currentId, dispatch]);

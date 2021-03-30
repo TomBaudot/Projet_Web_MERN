@@ -1,23 +1,40 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
-import {createShow} from "../../actions/shows.js";
+import {createShow, updateShow} from "../../actions/shows.js";
+import { useHistory } from 'react-router';
 
-const Form = ({currentId}) => {
+const Form = ({currentId,setCurrentId}) => {
     const [showData, setshowData] = useState({title:'',lead_actors:'',genres:'',nb_seasons:'',runtime:'',network:'',showrunner:'',description:'',selectedFile:''});
     const classes = useStyles();
     const dispatch = useDispatch();
-    const user = JSON.parse(localStorage.getItem('profile'))
+    const history = useHistory();
+    const user = JSON.parse(localStorage.getItem('profile'));
+    const show = useSelector((state) => currentId ? state.shows.find((m) => m._id === currentId) : null);
+
+    useEffect(() => {
+        if(show) setshowData(show);
+    }, [show]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createShow({...showData, name:user?.result?.name}));
+
+        if(currentId) {
+            dispatch(updateShow(currentId, showData))
+
+        }
+        else {
+            dispatch(createShow({...showData, name:user?.result?.name}));
+        }
+        clear()
+        history.push('/shows')
     };
 
     const clear = () => {
+        setCurrentId(null);
         setshowData({title:'',lead_actors:'',genres:'',nb_seasons:'',runtime:'',network:'',showrunner:'',description:'',selectedFile:''});
     };
 

@@ -17,4 +17,10 @@ export default makeStyles((theme) => ({
         height: '20%',
         width: '20%',
     },
+    buttonContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px',
+    },
 }));

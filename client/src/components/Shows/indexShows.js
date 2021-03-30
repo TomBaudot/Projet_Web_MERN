@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import {Container, AppBar, Typography, Grow, Grid, Button} from '@material-ui/core';
 import {useDispatch} from "react-redux";
 import { DropdownList } from 'react-widgets'
 
@@ -18,6 +18,7 @@ const IndexShows = () => {
     const [searchFieldValue,setSearchFieldValue] = useState('');
     const dispatch = useDispatch();
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem('profile'));
 
     useEffect( () => {dispatch(getShows());}, [currentId, dispatch]);
 
@@ -52,8 +53,18 @@ const IndexShows = () => {
                 <Typography className={classes.heading} variant="h2" align="center">Shows</Typography>
                 <img className={classes.image} src={movies} alt="icon"/>
             </AppBar>
+            { user?.result?.admin && (
+                <div className={classes.buttonContainer}>
+                    <Button  variant="contained" color="secondary" size="small" href="shows/add">Add a show</Button>
+                </div>
+            )}
             <DropdownList data={['Title', 'Number of seasons', 'Runtime,', 'Network', 'Showrunner', 'Description','Genres','Lead actors','Like','Dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
             <SearchBar placeholder={searchPlaceholder} handleInputChange={(e) => {setSearchFiled(e.target.value);setSearchFieldValue(e.target.value)}} fieldValue={searchFieldValue}/>
+            {currentId  ?(
+                <Grid item xs={12} sm={4}>
+                    <Form currentId={currentId} setCurrentId={setCurrentId} />
+                </Grid>
+            ) : ''}
             <Shows setCurrentId={setCurrentId} filter={searchField} selectedSearch={selectedSearch}/>
         </Container>
     );

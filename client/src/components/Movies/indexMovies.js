@@ -18,7 +18,7 @@ const IndexMovies = () => {
     const [searchFieldValue,setSearchFieldValue] = useState('');
     const dispatch = useDispatch();
     const classes = useStyles();
-    const user = JSON.parse(localStorage.getItem('profile'))
+    const user = JSON.parse(localStorage.getItem('profile'));
 
     useEffect( () => {dispatch(getMovies());}, [currentId, dispatch]);
 
@@ -49,7 +49,7 @@ const IndexMovies = () => {
             </AppBar>
             { user?.result?.admin && (
                 <div className={classes.buttonContainer}>
-                <Button  variant="contained" color="secondary" size="small" href="movies/add">Add a movie</Button>
+                    <Button  variant="contained" color="secondary" size="small" href="movies/add">Add a movie</Button>
                 </div>
             )}
             <DropdownList data={['title', 'director', 'release date', 'description','genres','lead actors','like','dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>

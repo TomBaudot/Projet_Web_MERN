@@ -13,6 +13,8 @@ import IconButton from "@material-ui/core/IconButton";
 import useStyles from './styles';
 import {deleteShow, likeShow, dislikeShow} from "../../../actions/shows";
 import Collapse from "@material-ui/core/Collapse";
+import {deleteMovie} from "../../../actions/movies";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const Show = ({show, setCurrentId}) => {
     const classes = useStyles();
@@ -48,6 +50,11 @@ const Show = ({show, setCurrentId}) => {
             <div className={classes.overlay}>
                 <Typography variant="h6">{show.title}</Typography>
                 <Typography variant="body2">Number of seasons : {show.nb_seasons}</Typography>
+                {user?.result?.admin && (
+                    <Button style={{color:'white'}} size="small" onClick={() => setCurrentId(show._id)}>
+                        <MoreHorizIcon fontSize="default" />
+                    </Button>
+                )}
             </div>
             <CardActions className={classes.cardActions}>
                 <Button size="small" color="primary" disabled={!user?.result} onClick={() =>dispatch(likeShow(show._id))}>
@@ -56,8 +63,8 @@ const Show = ({show, setCurrentId}) => {
                 <Button size="small" color="primary" disabled={!user?.result} onClick={() =>dispatch(dislikeShow(show._id))}>
                     <Dislikes />
                 </Button>
-                {(user?.result?._id === show?.creator) && (
-                    <Button size="small" color="primary" onClick={() => dispatch(deleteShow(show._id))}>
+                {user?.result?.admin && (
+                    <Button size="small" color="primary" onClick={() => dispatch(deleteMovie(show._id))}>
                         <DeleteIcon fontSize="small"/>
                         Delete
                     </Button>
