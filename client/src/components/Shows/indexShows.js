@@ -3,12 +3,13 @@ import {Container, AppBar, Typography, Grid, Button} from '@material-ui/core';
 import {useDispatch} from "react-redux";
 import { DropdownList } from 'react-widgets'
 
-import movies from '../../images/movies.png';
+import show from '../../images/show.png';
 import Shows from '../../components/Shows/Shows.js';
 import Form from '../../components/Form/FormShows.js';
 import SearchBar from '../../components/SearchBar/SearchBar.js'
 import useStyles from './styles';
 import { getShows } from "../../actions/shows";
+import movie from "../../images/movie.png";
 
 const IndexShows = () => {
     const [currentId, setCurrentId] = useState(0);
@@ -50,15 +51,14 @@ const IndexShows = () => {
     return (
         <Container maxWidth="lg">
             <AppBar className={classes.appBar} position="static" color="inherit">
-                <Typography className={classes.heading} variant="h2" align="center">Shows</Typography>
-                <img className={classes.image} src={movies} alt="icon"/>
+                <Typography className={classes.heading} variant="h2" align="center">Shows   <img src={show} alt="icon" height="60"/></Typography>
             </AppBar>
             { user?.result?.admin && (
                 <div className={classes.buttonContainer}>
                     <Button  variant="contained" color="secondary" size="small" href="shows/add">Add a show</Button>
                 </div>
             )}
-            <DropdownList data={['Title', 'Number of seasons', 'Runtime,', 'Network', 'Showrunner', 'Description','Genres','Lead actors','Like','Dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
+            <DropdownList data={['Title', 'Number of seasons', 'Runtime', 'Network', 'Showrunner', 'Description','Genres','Lead actors','Like','Dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
             <SearchBar placeholder={searchPlaceholder} handleInputChange={(e) => {setSearchFiled(e.target.value);setSearchFieldValue(e.target.value)}} fieldValue={searchFieldValue}/>
             {currentId  ?(
                 <Grid item xs={12} sm={4}>

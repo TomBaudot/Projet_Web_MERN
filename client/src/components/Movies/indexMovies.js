@@ -3,12 +3,13 @@ import { Container, AppBar, Typography, Grid, Button } from '@material-ui/core';
 import {useDispatch} from "react-redux";
 import { DropdownList } from 'react-widgets'
 
-import movies from '../../images/movies.png';
+import movie from '../../images/movie.png';
 import Movies from '../../components/Movies/Movies.js';
 import Form from '../../components/Form/Form.js';
 import SearchBar from '../../components/SearchBar/SearchBar.js'
 import useStyles from './styles';
 import { getMovies } from "../../actions/movies";
+import movies from "../../images/movies.png";
 
 const IndexMovies = () => {
     const [currentId, setCurrentId] = useState(0);
@@ -44,8 +45,7 @@ const IndexMovies = () => {
     return (
         <Container maxWidth="lg">
             <AppBar className={classes.appBar} position="static" color="inherit">
-                <Typography className={classes.heading} variant="h2" align="center">Movies</Typography>
-                <img className={classes.image} src={movies} alt="icon"/>
+                <Typography className={classes.heading} variant="h2" align="center">Movies   <img src={movie} alt="icon" height="60"/></Typography>
             </AppBar>
             { user?.result?.admin && (
                 <div className={classes.buttonContainer}>

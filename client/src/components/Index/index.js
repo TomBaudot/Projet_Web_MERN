@@ -3,8 +3,8 @@ import { CoolCardLink, CoolCardImage, CoolCardText } from "react-cool-card";
 import {MDBContainer, MDBRow, MDBCol} from "mdbreact";
 import useStyles from './styles';
 
-import backMovie from '../../images/backmovie.png';
-import backShow from '../../images/backshow.png'
+import backMovie from '../../images/backmovie.jpg';
+import backShow from '../../images/backshow.jpg'
 
 
 const Index = () => {
