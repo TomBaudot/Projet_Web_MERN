@@ -5,12 +5,13 @@ import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
 import {createMovie, updateMovie} from '../../actions/movies'
-
+import { useHistory } from 'react-router';
 
 const Form = ({currentId, setCurrentId}) => {
     const [movieData, setmovieData] = useState({title:'',director:'',lead_actors:'',genres:'',release_date:'',description:'',selectedFile:''});
     const classes = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory();
     const user = JSON.parse(localStorage.getItem('profile'));
     const movie = useSelector((state) => currentId ? state.movies.find((m) => m._id === currentId) : null);
 
@@ -23,12 +24,15 @@ const Form = ({currentId, setCurrentId}) => {
 
         if(currentId) {
             dispatch(updateMovie(currentId, movieData))
+
         }
         else {
             dispatch(createMovie({...movieData, name:user?.result?.name}));
         }
+        clear()
+        history.push('/movies')
 
-        clear();
+        
     };
 
     const clear = () => {
@@ -36,21 +40,11 @@ const Form = ({currentId, setCurrentId}) => {
         setmovieData({title:'',director:'',lead_actors:'',genres:'',release_date:'',description:'',selectedFile:''});
     };
 
-    if(!user?.result?.name) {
-        return (
-            <Paper className={classes.paper}>
-                <Typography variant="h6" align="center">
-                    Please sign in to like or dislike movies.
-                </Typography>
-            </Paper>
-        )
-    }
-
 
     return(
         <Paper className={classes.paper}>
             <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                <Typography variant="h6">{currentId ? 'Edit' : 'Add'} a movie</Typography>
+                <Typography variant="h6">Add a movie</Typography>
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={movieData.title} onChange={(e) => setmovieData({ ...movieData, title:e.target.value })}/>
                 <TextField name="director" variant="outlined" label="Director" fullWidth value={movieData.director} onChange={(e) => setmovieData({ ...movieData, director:e.target.value })}/>
                 <TextField name="lead_actors" variant="outlined" label="Lead actors" fullWidth value={movieData.lead_actors} onChange={(e) => setmovieData({ ...movieData, lead_actors:e.target.value })}/>

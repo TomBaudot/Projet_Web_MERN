@@ -7,6 +7,7 @@ import { Router, Route } from "react-router";
 import { createBrowserHistory } from 'history'
 import Auth from "./components/Auth/Auth";
 import Navbar from "./components/Navbar/Navbar";
+import Add from './components/Add/Add';
 
 
 const App = () => {
@@ -20,7 +21,8 @@ const App = () => {
                 <Navbar />
                 <Route exact path="/" component={Index} />
                 <Route path="/auth" component={Auth} />
-                <Route path="/movies" component={IndexMovies} />
+                <Route exact path="/movies" component={IndexMovies} />
+                <Route path="/movies/add" component={Add} />
             </Container>
         </Router>
 

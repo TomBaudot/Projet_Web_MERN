@@ -7,7 +7,7 @@ import auth from '../middleware/auth.js'
 const router = express.Router();
 
 router.get('/', getMovies);
-router.post('/', auth, createMovie);
+router.post('/add', auth, createMovie);
 router.delete('/:id', auth, deleteMovie);
 router.patch('/:id/likeMovie', auth, likeMovie);
 router.patch('/:id/dislikeMovie', auth, dislikeMovie);

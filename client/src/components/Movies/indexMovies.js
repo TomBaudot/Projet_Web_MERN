@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import { Container, AppBar, Typography, Grow, Grid, Button } from '@material-ui/core';
 import {useDispatch} from "react-redux";
 import { DropdownList } from 'react-widgets'
 
@@ -47,15 +47,20 @@ const IndexMovies = () => {
                 <Typography className={classes.heading} variant="h2" align="center">Movies</Typography>
                 <img className={classes.image} src={movies} alt="icon" height="60"/>
             </AppBar>
+            { user?.result?.admin && (
+                <div className={classes.buttonContainer}>
+                <Button  variant="contained" color="secondary" size="small" href="movies/add">Add a movie</Button>
+                </div>
+            )}
             <DropdownList data={['title', 'director', 'release date', 'description','genres','lead actors','like','dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
             <SearchBar placeholder={searchPlaceholder} handleInputChange={(e) => {setSearchFiled(e.target.value);setSearchFieldValue(e.target.value)}} fieldValue={searchFieldValue}/>
             <Grow in>
                 <Container>
                     <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-                        <Grid item xs={12} sm={7}>
+                        <Grid item xs={12} sm={6}>
                             <Movies setCurrentId={setCurrentId} filter={searchField} selectedSearch={selectedSearch}/>
                         </Grid>
-                        { user?.result?.admin && ( 
+                        {currentId && (
                         <Grid item xs={12} sm={4}>
                             <Form currentId={currentId} setCurrentId={setCurrentId} />
                         </Grid>
