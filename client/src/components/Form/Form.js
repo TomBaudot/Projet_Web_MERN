@@ -44,7 +44,7 @@ const Form = ({currentId, setCurrentId}) => {
     return(
         <Paper className={classes.paper}>
             <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                <Typography variant="h6">Add a movie</Typography>
+                <Typography variant="h6">{currentId ? "edit" : "add"} a movie</Typography>
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={movieData.title} onChange={(e) => setmovieData({ ...movieData, title:e.target.value })}/>
                 <TextField name="director" variant="outlined" label="Director" fullWidth value={movieData.director} onChange={(e) => setmovieData({ ...movieData, director:e.target.value })}/>
                 <TextField name="lead_actors" variant="outlined" label="Lead actors" fullWidth value={movieData.lead_actors} onChange={(e) => setmovieData({ ...movieData, lead_actors:e.target.value })}/>

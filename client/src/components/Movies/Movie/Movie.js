@@ -52,14 +52,12 @@ const Movie = ({movie, setCurrentId, currentId}) => {
                 <Typography variant="h6">{movie.title}</Typography>
                 <Typography variant="body2">Released in : {movie.release_date}</Typography>
                 <Typography variant="body2">Directed by : {movie.director}</Typography>
+                {user?.result?.admin && (
+                        <Button style={{color:'white'}} size="small" onClick={() => setCurrentId(movie._id)}>
+                            <MoreHorizIcon fontSize="default" />
+                        </Button>
+                )}
             </div>
-            {user?.result?.admin && (
-                <div className={classes.overlay2}>
-                    <Button style={{color:'white'}} size="small" onClick={() => setCurrentId(movie._id)}>
-                        <MoreHorizIcon fontSize="default" />
-                    </Button>
-                </div>
-            )}
                 <CardActions className={classes.cardActions}>
                     <Button size="small" color="primary" disabled={!user?.result} onClick={() =>dispatch(likeMovie(movie._id))}>
                         <Likes />

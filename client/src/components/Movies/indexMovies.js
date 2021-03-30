@@ -54,14 +54,12 @@ const IndexMovies = () => {
             )}
             <DropdownList data={['title', 'director', 'release date', 'description','genres','lead actors','like','dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
             <SearchBar placeholder={searchPlaceholder} handleInputChange={(e) => {setSearchFiled(e.target.value);setSearchFieldValue(e.target.value)}} fieldValue={searchFieldValue}/>
-            <div>
-                <Movies setCurrentId={setCurrentId} filter={searchField} selectedSearch={selectedSearch} currentId={currentId}/>
-                {currentId && (
-                    <Grid item xs={12} sm={4}>
-                        <Form currentId={currentId} setCurrentId={setCurrentId} />
-                    </Grid>
-                )}
-            </div>
+            {currentId  ?(
+                <Grid item xs={12} sm={4}>
+                    <Form currentId={currentId} setCurrentId={setCurrentId} />
+                </Grid>
+            ) : ''}
+            <Movies setCurrentId={setCurrentId} filter={searchField} selectedSearch={selectedSearch} currentId={currentId}/>
         </Container>
     );
 }
