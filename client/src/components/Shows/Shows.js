@@ -3,12 +3,12 @@ import { Grid, CircularProgress} from "@material-ui/core";
 import {useSelector} from "react-redux";
 
 import Show from './Show/Show.js';
-import useStyles from './styles';
+// import useStyles from './styles';
 
 
 const Shows = ({setCurrentId,filter,selectedSearch}) => {
     const shows = useSelector((state) => state.shows);
-    const classes = useStyles();
+    // const classes = useStyles();
 
     //need to be made more beautifull, don't know how yet
 

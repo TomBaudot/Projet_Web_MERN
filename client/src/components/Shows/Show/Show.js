@@ -13,7 +13,6 @@ import IconButton from "@material-ui/core/IconButton";
 import useStyles from './styles';
 import {deleteShow, likeShow, dislikeShow} from "../../../actions/shows";
 import Collapse from "@material-ui/core/Collapse";
-import {deleteMovie} from "../../../actions/movies";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const Show = ({show, setCurrentId}) => {
