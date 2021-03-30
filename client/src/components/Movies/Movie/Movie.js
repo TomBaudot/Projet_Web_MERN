@@ -3,6 +3,7 @@ import {Card, CardActions, CardContent, CardMedia, Button, Typography} from "@ma
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import ThumbDownAltOutlined from '@material-ui/icons/ThumbDownAltOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {useDispatch} from "react-redux";
@@ -52,32 +53,39 @@ const Movie = ({movie, setCurrentId, currentId}) => {
                 <Typography variant="body2">Released in : {movie.release_date}</Typography>
                 <Typography variant="body2">Directed by : {movie.director}</Typography>
             </div>
-            <CardActions  className={classes.cardActions}>
-                <Button size="small" color="primary" disabled={!user?.result} onClick={() =>dispatch(likeMovie(movie._id))}>
-                    <Likes />
-                </Button>
-                <Button size="small" color="primary" disabled={!user?.result} onClick={() =>dispatch(dislikeMovie(movie._id))}>
-                    <Dislikes />
-                </Button>
-                {(user?.result?._id === movie?.creator) && (
+            {user?.result?.admin && (
+                <div className={classes.overlay2}>
+                    <Button style={{color:'white'}} size="small" onClick={() => setCurrentId(movie._id)}>
+                        <MoreHorizIcon fontSize="default" />
+                    </Button>
+                </div>
+            )}
+                <CardActions className={classes.cardActions}>
+                    <Button size="small" color="primary" disabled={!user?.result} onClick={() =>dispatch(likeMovie(movie._id))}>
+                        <Likes />
+                    </Button>
+                    <Button size="small" color="primary" disabled={!user?.result} onClick={() =>dispatch(dislikeMovie(movie._id))}>
+                        <Dislikes />
+                    </Button>
+                    {user?.result?.admin && (
                     <Button size="small" color="primary" onClick={() => dispatch(deleteMovie(movie._id))}>
                         <DeleteIcon fontSize="small"/>
                         Delete
                     </Button>
-                )}
-                <IconButton className={clsx(classes.expand, {[classes.expandOpen]: expanded,})} onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-                    <ExpandMoreIcon />
-                </IconButton>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <div className={classes.details}>
-                    <CardContent>
-                        <Typography variant="h6" color="textSecondary">Staring : {movie.lead_actors.map((actor) =>`${actor} `)}</Typography>
-                        <Typography variant="h6" color="textSecondary">Genres : {movie.genres.map((genre) =>`${genre} `)}</Typography>
-                        <Typography variant="h6" gutterBottom>Description : {movie.description}</Typography>
-                    </CardContent>
-                </div>
-            </Collapse>
+                    )}
+                    <IconButton className={clsx(classes.expand, {[classes.expandOpen]: expanded,})} onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
+                        <ExpandMoreIcon />
+                    </IconButton>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <div className={classes.details}>
+                        <CardContent>
+                            <Typography variant="h6" color="textSecondary">Staring : {movie.lead_actors.map((actor) =>`${actor} `)}</Typography>
+                            <Typography variant="h6" color="textSecondary">Genres : {movie.genres.map((genre) =>`${genre} `)}</Typography>
+                            <Typography variant="h6" gutterBottom>Description : {movie.description}</Typography>
+                        </CardContent>
+                    </div>
+                </Collapse>
         </Card>
     )
 };

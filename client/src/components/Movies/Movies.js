@@ -9,7 +9,7 @@ import useStyles from './styles';
 const Movies = ({setCurrentId,filter,selectedSearch,currentId}) => {
     const movies = useSelector((state) => state.movies);
     const classes = useStyles();
-
+    
     //need to be made more beautifull, don't know how yet
 
     // Simple string

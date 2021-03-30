@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Container, AppBar, Typography,} from '@material-ui/core';
+import { Container, AppBar, Typography, Grow, Grid, Button } from '@material-ui/core';
 import {useDispatch} from "react-redux";
 import { DropdownList } from 'react-widgets'
 
@@ -18,6 +18,7 @@ const IndexMovies = () => {
     const [searchFieldValue,setSearchFieldValue] = useState('');
     const dispatch = useDispatch();
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem('profile'))
 
     useEffect( () => {dispatch(getMovies());}, [currentId, dispatch]);
 
@@ -46,9 +47,21 @@ const IndexMovies = () => {
                 <Typography className={classes.heading} variant="h2" align="center">Movies</Typography>
                 <img className={classes.image} src={movies} alt="icon"/>
             </AppBar>
+            { user?.result?.admin && (
+                <div className={classes.buttonContainer}>
+                <Button  variant="contained" color="secondary" size="small" href="movies/add">Add a movie</Button>
+                </div>
+            )}
             <DropdownList data={['title', 'director', 'release date', 'description','genres','lead actors','like','dislike']} onSelect={dopDonwListFunc} defaultValue="Select search parameter"/>
             <SearchBar placeholder={searchPlaceholder} handleInputChange={(e) => {setSearchFiled(e.target.value);setSearchFieldValue(e.target.value)}} fieldValue={searchFieldValue}/>
-            <Movies setCurrentId={setCurrentId} filter={searchField} selectedSearch={selectedSearch} currentId={currentId}/>
+            <div>
+                <Movies setCurrentId={setCurrentId} filter={searchField} selectedSearch={selectedSearch} currentId={currentId}/>
+                {currentId && (
+                    <Grid item xs={12} sm={4}>
+                        <Form currentId={currentId} setCurrentId={setCurrentId} />
+                    </Grid>
+                )}
+            </div>
         </Container>
     );
 }

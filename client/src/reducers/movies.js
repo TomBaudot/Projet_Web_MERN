@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, DELETE, LIKE, DISLIKE } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, DELETE, LIKE, DISLIKE, UPDATE } from '../constants/actionTypes';
 
 export default (movies = [], action) => {
     switch (action.type) {
@@ -12,6 +12,8 @@ export default (movies = [], action) => {
             return [...movies, action.payload];
         case DELETE:
             return movies.filter((movie) => movie._id !== action.payload);
+        case UPDATE:
+            return movies.map((movie) => movie._id === action.payload._id ? action.payload : movie);
         default:
             return movies;
     }

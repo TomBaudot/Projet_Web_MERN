@@ -83,4 +83,16 @@ export const dislikeMovie = async (req, res) => {
     res.json(updatedMovie);
 };
 
+export const updateMovie = async (req, res) => {
+    const {id: _id} = req.params;
+    const movie = req.body ;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No movies with that id');
+
+
+    const updatedMovie = await MovieMessage.findByIdAndUpdate(_id, {...movie, _id}, {new:true});
+
+    res.json(updatedMovie)
+
+}
 export default router;

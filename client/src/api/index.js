@@ -12,10 +12,11 @@ API.interceptors.request.use((req) => {
 
 
 export const fetchMovies = () => API.get('/movies');
-export const createMovie = (newMovie) => API.post('/movies', newMovie);
+export const createMovie = (newMovie) => API.post('/movies/add', newMovie);
 export const deleteMovie = (id) => API.delete(`/movies/${id}`);
 export const likeMovie = (id) => API.patch(`/movies/${id}/likeMovie`);
 export const dislikeMovie = (id) => API.patch(`/movies/${id}/dislikeMovie`);
+export const updateMovie = (id, updatedMovie) => API.patch(`/movies/${id}/updateMovie`, updatedMovie)
 
 export const fetchShows = () => API.get('/shows');
 export const createShow = (newShow) => API.post('/shows', newShow);

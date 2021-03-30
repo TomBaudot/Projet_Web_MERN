@@ -4,12 +4,19 @@ export default makeStyles((theme) => ({
     mainContainer: {
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'center'
     },
     smMargin: {
         margin: theme.spacing(1),
     },
     actionDiv: {
         textAlign: 'center',
+    },
+    buttonContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px',
     },
     image: {
         marginLeft: 'auto',
